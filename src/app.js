@@ -2,11 +2,6 @@ const express = require("express");
 
 const app = express();
 
-// Order matters
-// app.use("/user", (req, res) => {
-//   res.send("Order matters");
-// });
-
 // this will only handle Get call to /user
 app.get("/user", (req, res) => {
   res.send({ firstNmae: "Wasim", lastName: "Akhter" });
