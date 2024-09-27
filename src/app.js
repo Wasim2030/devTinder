@@ -10,17 +10,35 @@ const app = express();
 //   res.send("This is response from the server");
 // });
 
-app.use("/", (req, res) => {
-  res.send("Hello from the dashboard");
+// if i put this code on top then even we put sth like //// or /hello or /test it will always show the given below result e.g. Hello from the dashboard
+// app.use("/", (req, res) => {
+//   res.send("Hello from the dashboard");
+// });
+
+// as soon as request comes from the browser. it will first check this route then afterwards route
+app.use("/hello/2", (req, res) => {
+  res.send("sequence of code matters");
 });
 
+// note - /hello will work and also /hello/xyz or /hello/abc/xyz  will also give the same result.
 app.use("/hello", (req, res) => {
   res.send("Hello ello llo");
 });
 
+// this route will not work boz sequence of code matters.
+// if put on above the above "/hello" route then it will work fine
+// app.use("/hello/2", (req, res) => {
+//   res.send("sequence of code matters");
+// });
+
 app.use("/test", (req, res) => {
   res.send("Hello from the server");
 });
+
+// sequence or order of code matters
+// app.use("/", (req, res) => {
+//   res.send("Hello from the dashboard");
+// });
 
 app.listen(7777, () => {
   console.log("Server is listening on port: 7777");
